@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <body>
+
+        <p>Click the button to do a loop which will skip the step where i = 3.</p>
+        <button onclick="myFunction()">Click me</button>
+        <p id="data"></p>
+
+        <script>
+            function myFunction() {
+                
+                var x = "", i = 1;
+                
+                for (i = 1; i <= 10; i++) {
+                    
+                    // continue statement logic shall go here...
+                    
+                    x = x + "number = " + i + "<br>";
+                }
+                
+                document.getElementById("data").innerHTML = x;
+            }
+        </script>
+
+    </body>
+</html>
