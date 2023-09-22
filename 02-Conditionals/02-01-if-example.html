@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <body>
+
+        <p>
+            Click the button to get a "Have a nice day" greeting if the time is less than 21:00. 
+            <br /> 
+            If the time is greater than 21:00 the greeting will not be displayed.
+        </p>
+
+        <button onclick="myFunction()">Click me</button>
+
+        <p id="message"></p>
+
+        <script>
+            function myFunction() {
+                
+                var x = "";
+                
+                var time = new Date().getHours();
+                
+                // your code goes here...
+                
+                document.getElementById("message").innerHTML = x;
+            }
+        </script>
+
+    </body>
+</html>
