@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Structures - JavaScript</title>
+
+    <script src="https://unpkg.com/ootliner@0.0.2/lib/index.js "></script>
+    <script type="module" src="https://md-block.verou.me/prism.js"></script>
+    <script type="module" src="https://md-block.verou.me/md-block.js"></script>
+
+	  <link rel="stylesheet" href="https://md-block.verou.me/prism.css">
+    <link rel="stylesheet" href="https://md-block.verou.me/style.css">
+    <link rel="stylesheet" href="../../00-assets/custom.css">
+</head>
+<body>
+    <main>
+        <md-block hlinks>
+
+# Data Structures
+
+Data structures in JavaScript are containers that allow you to organize and store data in a structured and efficient manner. They provide different ways to store, access, and manipulate data based on specific needs. JavaScript provides built-in data structures, such as arrays and objects, as well as support for other data structure implementations through libraries or custom implementations.
+
+Let's explore some commonly used data structures in JavaScript:
+
+## 1. Arrays:
+- Arrays are ordered collections of values, allowing you to store multiple values in a single variable.
+- They allow you to store multiple values in a single variable, and each value in the array is assigned an index starting from 0.
+- Arrays can be accessed and modified using indexes, which start from 0.
+- They can store values of different types, including numbers, strings, objects, and even other arrays.
+- JavaScript arrays are dynamic in size, meaning they can grow or shrink as needed.
+- Arrays provide various built-in methods for manipulating and accessing their elements.
+
+```javascript
+const fruits = ['apple', 'banana', 'orange'];
+
+console.log(fruits[0]); // Output: apple
+console.log(fruits.length); // Output: 3
+
+fruits.push('grape'); // Add an element at the end
+console.log(fruits); // Output: ['apple', 'banana', 'orange', 'grape']
+
+fruits.pop(); // Remove the last element
+console.log(fruits); // Output: ['apple', 'banana', 'orange']
+```
+
+In the example above, we have an array `fruits` containing elements such as `'apple'`, `'banana'`, and `'orange'`. We access the elements using their indexes, and we can use array methods like `push()` to add elements to the end of the array and `pop()` to remove the last element.
+
+Arrays are commonly used when you need to work with a collection of similar or related values, such as a list of names, a set of numbers, or a stack of elements.
+
+Some more examples:
+
+```javascript
+const numbers = [1, 2, 3, 4, 5];
+const names = ["John", "Jane", "Alice"];
+const mixedArray = [1, "hello", true, { name: "John" }];
+```
+
+#### Array Properties:
+
+- `length`: The `length` property returns the number of elements in an array.
+
+```javascript
+const numbers = [1, 2, 3, 4, 5];
+console.log(numbers.length); // Output: 5
+```
+
+#### Common Array Methods:
+- `push()`: Adds one or more elements to the end of an array.
+
+```javascript
+const fruits = ["apple", "banana"];
+fruits.push("orange");
+console.log(fruits); // Output: ["apple", "banana", "orange"]
+```
+
+- `pop()`: Removes the last element from an array and returns it.
+
+```javascript
+const fruits = ["apple", "banana", "orange"];
+const lastFruit = fruits.pop();
+console.log(lastFruit); // Output: "orange"
+console.log(fruits); // Output: ["apple", "banana"]
+```
+
+- `shift()`: Removes the first element from an array and returns it.
+
+```javascript
+const fruits = ["apple", "banana", "orange"];
+const firstFruit = fruits.shift();
+console.log(firstFruit); // Output: "apple"
+console.log(fruits); // Output: ["banana", "orange"]
+```
+
+- `unshift()`: Adds one or more elements to the beginning of an array.
+
+```javascript
+const fruits = ["banana", "orange"];
+fruits.unshift("apple");
+console.log(fruits); // Output: ["apple", "banana", "orange"]
+```
+
+- `concat()`: Combines two or more arrays and returns a new array.
+
+```javascript
+const numbers1 = [1, 2, 3];
+const numbers2 = [4, 5, 6];
+const combined = numbers1.concat(numbers2);
+console.log(combined); // Output: [1, 2, 3, 4, 5, 6]
+```
+
+- `slice()`: Returns a new array containing a portion of the original array.
+
+```javascript
+const numbers = [1, 2, 3, 4, 5];
+const subset = numbers.slice(1, 4);
+console.log(subset); // Output: [2, 3, 4]
+```
+
+- `splice()`: Adds or removes elements from an array at a specified index.
+
+```javascript
+const numbers = [1, 2, 3, 4, 5];
+const removed = numbers.splice(2, 2, 6, 7);
+console.log(removed); // Output: [3, 4]
+console.log(numbers); // Output: [1, 2, 6, 7, 5]
+```
+
+- `indexOf()`: Returns the first index at which a given element is found in an array.
+
+```javascript
+const numbers = [1, 2, 3, 4, 5];
+const index = numbers.indexOf(3);
+console.log(index); // Output: 2
+```
+
+- `includes()`: Checks if an array contains a specific element and returns a boolean.
+
+```javascript
+const numbers = [1, 2, 3, 4, 5];
+const hasThree = numbers.includes(3);
+console.log(hasThree); // Output: true
+```
+
+- `join()`: Joins all elements of an array into a string using a specified separator.
+
+```javascript
+const fruits = ["apple", "banana", "orange"];
+const joinedString = fruits.join(", ");
+console.log(joinedString); // Output: "apple, banana, orange"
+```
+<br />
+
+---
+
+## 2. Objects:
+- Objects in JavaScript are data structures that allow you to store and organize related data as key-value pairs.
+- Objects are collections of key-value pairs, where each value is associated with a unique key.
+- A key is a unique identifier (also known as a property) that represents a specific piece of data, and a value is the actual data associated with that key.
+- The key-value pairs in an object can store various types of data, such as numbers, strings, booleans, arrays, other objects, or even functions.
+- Objects are useful for representing complex entities or concepts, as they allow you to group related data together.
+- They are used to represent more complex data structures and can store different types of values, including other objects and functions.
+- Object properties can be accessed and modified using dot notation (`obj.property`) or bracket notation (`obj['property']`).
+
+Here's an example of an object representing a person:
+
+```javascript
+const person = {
+  name: 'John Doe',
+  age: 30,
+  city: 'New York',
+  hobbies: ['reading', 'cooking', 'hiking'],
+  address: {
+    street: '123 Main St',
+    zipCode: '12345',
+  },
+};
+
+console.log(person.name); // Output: John Doe
+console.log(person.age); // Output: 30
+console.log(person.hobbies[0]); // Output: reading
+console.log(person.address.street); // Output: 123 Main St
+```
+
+In the example above, we have an object `person` with various properties such as `name`, `age`, `city`, `hobbies`, and `address`. The `hobbies` property is an array, and the `address` property is another nested object.
+
+To access the values of object properties, you can use dot notation (`objectName.property`) or bracket notation (`objectName['property']`).
+
+
+#### Object Properties:
+- Object properties can be accessed using dot notation or bracket notation.
+
+```javascript
+const person = {
+  name: "John",
+  age: 25,
+};
+
+console.log(person.name); // Output: "John"
+console.log(person["age"]); // Output: 25
+```
+
+#### Object Methods:
+- Objects can have methods, which are functions stored as object properties.
+
+```javascript
+const person = {
+  name: "John",
+  greet: function () {
+    console.log(`Hello, my name is ${this.name}`);
+  },
+};
+
+person.greet(); // Output: "Hello, my name is John"
+```
+
+#### Mutability:
+- Arrays and objects in JavaScript are mutable, meaning you can modify their elements or properties after they are created.
+- You can change the value of an array element or object property, add new elements or properties, and remove existing ones.
+
+```javascript
+const numbers = [1, 2, 3];
+numbers[1] = 5; // Modify element
+numbers.push(4); // Add element
+numbers.pop(); // Remove element
+console.log(numbers); // Output: [1, 5, 3]
+
+const person = {
+  name: "John",
+  age: 25,
+};
+person.age = 30; // Modify property
+person.hobbies = ["reading", "coding"]; // Add property
+delete person.age; // Remove property
+console.log(person); // Output: { name: "John", hobbies: ["reading", "coding"] }
+```
+
+<br />
+
+---
+
+### Math Object:
+The `Math` object in JavaScript provides various mathematical operations and constants. It is not a constructor and does not need to be instantiated.
+
+Here are some commonly used methods and properties of the `Math` object:
+
+1. Mathematical Constants:
+   - `Math.PI` represents the ratio of the circumference of a circle to its diameter (approximately 3.14159).
+   - `Math.E` represents the base of the natural logarithm (approximately 2.71828).
+
+2. Mathematical Methods:
+   - `Math.abs(x)` returns the absolute value of `x`.
+   - `Math.sqrt(x)` returns the square root of `x`.
+   - `Math.pow(x, y)` returns the value of `x` raised to the power of `y`.
+   - `Math.floor(x)` returns the largest integer less than or equal to `x`.
+   - `Math.ceil(x)` returns the smallest integer greater than or equal to `x`.
+   - `Math.random()` generates a random number between 0 (inclusive) and 1 (exclusive).
+
+Here's an example:
+
+```javascript
+console.log(Math.PI); // Output: 3.141592653589793
+console.log(Math.sqrt(16)); // Output: 4
+console.log(Math.pow(2, 3)); // Output: 8
+console.log(Math.floor(4.9)); // Output: 4
+console.log(Math.ceil(4.1)); // Output: 5
+console.log(Math.random()); // Output: Random number between 0 and 1
+```
+
+<br />
+
+---
+
+## 3. Sets:
+
+In JavaScript, there is no built-in data structure called "Data Sets." However, you can simulate the behavior of a data set using different data structures like arrays, sets, or objects.
+
+Sets in JavaScript are data structures that allow you to store unique values of any type. They are a collection of distinct elements, where each element can occur only once within the Set. Sets are unordered, meaning the elements are not stored in a specific order like arrays.
+
+
+- Sets are collections of unique values, meaning they cannot contain duplicate elements.
+- In JavaScript, you can represent a data set using arrays or sets.
+- They are useful when you need to store a collection of values without any specific order.
+- Arrays can be used to store a collection of unique values, but you need to manually check for duplicates.
+- Sets, on the other hand, automatically handle uniqueness and provide built-in methods for adding, deleting, and checking the existence of elements.
+- Sets provide built-in methods for adding, removing, and checking the existence of elements.
+
+**Example 1:**
+```javascript
+// Example of a set
+const set = new Set();
+
+set.add('value1');
+set.add('value2');
+set.add('value2'); // Duplicate elements are ignored
+
+console.log(set.size); // Output: 2
+
+set.delete('value2'); // Remove an element
+console.log(set.size); // Output: 1
+```
+**Example 2:**
+
+```javascript
+const dataSet = new Set();
+dataSet.add(1);
+dataSet.add(2);
+dataSet.add(3);
+dataSet.add(3); // Duplicate value, not added
+console.log(dataSet); // Output: Set {1, 2, 3}
+```
+
+_Let's dig in more detail:_
+
+#### 1. Creating a Set:
+- You can create a Set using the `Set` constructor function. You can pass an iterable object (such as an array) to initialize the Set with its elements.
+
+```javascript
+const mySet = new Set(); // Creating an empty Set
+const mySet2 = new Set([1, 2, 3]); // Creating a Set with initial elements
+```
+
+#### 2. Adding Elements to a Set:
+- The `add()` method is used to add elements to a Set. It modifies the Set by adding the specified element.
+- If the element already exists in the Set, it will not be added again, as Sets only allow unique values.
+
+```javascript
+const mySet = new Set();
+mySet.add(1);
+mySet.add("Hello");
+mySet.add(true);
+console.log(mySet); // Output: Set {1, "Hello", true}
+```
+
+#### 3. Checking the Size of a Set:
+- The `size` property returns the number of elements in a Set.
+
+```javascript
+const mySet = new Set([1, 2, 3]);
+console.log(mySet.size); // Output: 3
+```
+
+#### 4. Checking if an Element is in a Set:
+- The `has()` method is used to check if a specific element exists in a Set. It returns a boolean value indicating whether the element is present or not.
+
+```javascript
+const mySet = new Set([1, 2, 3]);
+console.log(mySet.has(2)); // Output: true
+console.log(mySet.has(4)); // Output: false
+```
+
+#### 5. Deleting Elements from a Set:
+- The `delete()` method is used to remove a specific element from a Set. It modifies the Set by deleting the specified element.
+- If the element is not present in the Set, nothing happens.
+
+```javascript
+const mySet = new Set([1, 2, 3]);
+mySet.delete(2);
+console.log(mySet); // Output: Set {1, 3}
+```
+
+#### 6. Clearing a Set:
+- The `clear()` method is used to remove all elements from a Set, making it empty.
+
+```javascript
+const mySet = new Set([1, 2, 3]);
+mySet.clear();
+console.log(mySet); // Output: Set {}
+```
+
+#### 7. Iterating over a Set:
+- Sets can be iterated using loops or iterator methods like `forEach()`, `for...of` loop, or the spread operator (`...`).
+
+```javascript
+const mySet = new Set([1, 2, 3]);
+mySet.forEach((value) => {
+  console.log(value);
+});
+// Output:
+// 1
+// 2
+// 3
+
+for (const value of mySet) {
+  console.log(value);
+}
+// Output:
+// 1
+// 2
+// 3
+
+console.log([...mySet]); // Output: [1, 2, 3]
+```
+
+#### 8. Mutability of Sets:
+- Sets in JavaScript are mutable, meaning you can add or delete elements from them.
+- You can add elements to a Set using the `add()` method and delete elements using the `delete()` method.
+- However, modifying an existing element directly in a Set is not possible. Instead, you need to delete the element and add the modified element as a new entry.
+
+```javascript
+const mySet = new Set([1, 2, 3]);
+mySet.delete(2);
+mySet.add(4);
+console.log(mySet); // Output: Set {1, 3, 4}
+```
+<br />
+
+---
+
+## 4. Maps:
+
+Maps in JavaScript are data structures that allow you to store key-value pairs. Unlike Sets, Maps can use any type of value as a key, not just unique values. Maps are ordered, iterable, and can store any type of data as both keys and values.
+
+- Maps are collections of key-value pairs, similar to objects. However, they have some differences and advantages over objects.
+- Maps can use any data type as keys, whereas object keys are converted to strings.
+- Maps maintain the order of inserted elements, making them useful when the order of elements is important.
+- Maps provide built-in methods for adding, removing, and searching for elements.
+
+```javascript
+// Example of a map
+const map = new Map();
+
+map.set('key1', 'value1');
+map.set('key2', 'value2');
+
+console.log(map.get('key1')); // Output: value1
+console.log(map.size); // Output: 2
+
+map.delete('key2'); // Remove an element
+console.log(map.size); // Output: 1
+```
+
+Here's an explanation of the properties, methods, and mutability of Maps in JavaScript:
+
+#### 1. Creating a Map:
+   - You can create a Map using the `Map` constructor function. You can pass an iterable object (such as an array of key-value pairs) to initialize the Map with its elements.
+
+   ```javascript
+   const myMap = new Map(); // Creating an empty Map
+   const myMap2 = new Map([["name", "John"], ["age", 25]]); // Creating a Map with initial key-value pairs
+   ```
+
+#### 2. Adding Entries to a Map:
+   - The `set()` method is used to add key-value pairs to a Map. It modifies the Map by adding the specified entry.
+   - If the key already exists in the Map, the existing value is updated.
+
+   ```javascript
+   const myMap = new Map();
+   myMap.set("name", "John");
+   myMap.set("age", 25);
+   console.log(myMap); // Output: Map {"name" => "John", "age" => 25}
+   ```
+
+#### 3. Getting Values from a Map:
+   - The `get()` method is used to retrieve the value associated with a specific key in a Map.
+   - If the key is not present in the Map, it returns `undefined`.
+
+   ```javascript
+   const myMap = new Map([["name", "John"], ["age", 25]]);
+   console.log(myMap.get("name")); // Output: John
+   console.log(myMap.get("city")); // Output: undefined
+   ```
+
+#### 4. Checking if a Key Exists in a Map:
+   - The `has()` method is used to check if a specific key exists in a Map. It returns a boolean value indicating whether the key is present or not.
+
+   ```javascript
+   const myMap = new Map([["name", "John"], ["age", 25]]);
+   console.log(myMap.has("name")); // Output: true
+   console.log(myMap.has("city")); // Output: false
+   ```
+
+#### 5. Deleting Entries from a Map:
+   - The `delete()` method is used to remove a specific entry (key-value pair) from a Map. It modifies the Map by deleting the specified entry.
+   - If the key is not present in the Map, nothing happens.
+
+   ```javascript
+   const myMap = new Map([["name", "John"], ["age", 25]]);
+   myMap.delete("name");
+   console.log(myMap); // Output: Map {"age" => 25}
+   ```
+
+#### 6. Clearing a Map:
+   - The `clear()` method is used to remove all entries from a Map, making it empty.
+
+   ```javascript
+   const myMap = new Map([["name", "John"], ["age", 25]]);
+   myMap.clear();
+   console.log(myMap); // Output: Map {}
+   ```
+
+#### 7. Iterating over a Map:
+   - Maps can be iterated using loops or iterator methods like `forEach()`, `for...of` loop, or the spread operator (`...`).
+
+   ```javascript
+   const myMap = new Map([["name", "John"], ["age", 25]]);
+   myMap.forEach((value, key) => {
+     console.log(key, value);
+   });
+   // Output:
+   // name John
+   // age 25
+
+   for (const [key, value] of myMap) {
+     console.log(key, value);
+   }
+   // Output:
+   // name John
+   // age 25
+
+   console.log([...myMap]); // Output: [["name", "John"], ["age", 25]]
+   ```
+
+#### 8. Mutability of Maps:
+   - Maps in JavaScript are mutable, meaning you can add, update, or delete entries (key-value pairs) in them.
+   - You can add entries to a Map using the `set()` method, retrieve values using the `get()` method, and delete entries using the `delete()` method.
+   - Modifying an existing key directly in a Map is possible by using the `set()` method with the same key.
+
+   ```javascript
+   const myMap = new Map([["name", "John"], ["age", 25]]);
+   myMap.set("age", 26); // Modifying the "age" value
+   myMap.delete("name"); // Deleting the "name" entry
+   console.log(myMap); // Output: Map { "age" => 26 }
+   ```
+
+Maps in JavaScript provide a powerful way to store and retrieve key-value pairs. They are commonly used when you need to associate values with specific keys, such as storing configurations, dictionaries, or complex data structures.
+
+<br />
+
+---
+
+## 5. Strings:
+In JavaScript, a string is a sequence of characters enclosed in single quotes ('') or double quotes (""). Strings are used to represent textual data and can contain letters, numbers, symbols, and whitespace.
+
+Here are some important properties and methods related to strings:
+
+#### 1. Length property:
+   - The `length` property returns the number of characters in a string.
+
+   ```javascript
+   const myString = "Hello, World!";
+   console.log(myString.length); // Output: 13
+   ```
+
+#### 2. Accessing Characters:
+   - You can access individual characters in a string using bracket notation and the index of the character (starting from 0).
+
+   ```javascript
+   const myString = "Hello, World!";
+   console.log(myString[0]); // Output: H
+   console.log(myString[7]); // Output: W
+   ```
+
+#### 3. Concatenation:
+   - You can concatenate strings using the `+` operator or the `concat()` method.
+
+   ```javascript
+   const string1 = "Hello";
+   const string2 = "World";
+   console.log(string1 + " " + string2); // Output: Hello World
+   console.log(string1.concat(" ", string2)); // Output: Hello World
+   ```
+
+#### 4. Substring:
+   - The `substring()` method returns a new string that contains a portion of the original string, starting from the specified index.
+
+   ```javascript
+   const myString = "Hello, World!";
+   console.log(myString.substring(7, 12)); // Output: World
+   ```
+
+#### 5. String Methods:
+   - JavaScript provides several built-in methods for manipulating strings, such as `toUpperCase()`, `toLowerCase()`, `trim()`, `split()`, `replace()`, and more.
+
+   ```javascript
+   const myString = "   Hello, World!   ";
+   console.log(myString.toUpperCase()); // Output: "   HELLO, WORLD!   "
+   console.log(myString.trim()); // Output: "Hello, World!"
+   console.log(myString.split(",")); // Output: ["   Hello", " World!   "]
+   console.log(myString.replace("World", "India")); // Output: "   Hello, India!   "
+   ```
+
+<br />
+
+---
+   
+## Rest Parameters:
+Rest parameters allow you to pass an arbitrary number of arguments to a function as an array. This is denoted by three dots (`...`) followed by the parameter name. Rest parameters collect all the remaining arguments into an array, even if the function is called with fewer arguments.
+
+Here's an example:
+
+```javascript
+function sum(...numbers) {
+  let total = 0;
+  for (let number of numbers) {
+    total += number;
+  }
+  return total;
+}
+
+console.log(sum(1, 2, 3)); // Output: 6
+console.log(sum(4, 5, 6, 7, 8)); // Output: 30
+```
+
+In the above example, the `sum()` function can accept any number of arguments. The rest parameter `...numbers` collects all the arguments into an array called `numbers`. We can then loop through this array and calculate the sum of all the numbers.
+
+
+## Destructuring:
+Destructuring assignment is a convenient way to extract values from arrays or objects and assign them to variables. It provides a concise syntax to unpack values from data structures.
+
+Here's an example of array and object destructuring:
+
+1. Array Destructuring:
+
+```javascript
+const numbers = [1, 2, 3, 4, 5];
+const [a, b, , c] = numbers;
+
+console.log(a); // Output: 1
+console.log(b); // Output: 2
+console.log(c); // Output: 4
+```
+
+2. Object Destructuring:
+
+```javascript
+const person = {
+  name: "John",
+  age: 25,
+  city: "Mumbai",
+};
+
+const { name, age, city } = person;
+
+console.log(name); // Output: John
+console.log(age); // Output: 25
+console.log(city); // Output: Mumbai
+```
+
+In the above examples, array destructuring assigns the values of the array elements to variables `a`, `b`, and `c`. Object destructuring assigns the values of the object properties to variables with the same name (`name`, `age`, and `city`).
+
+### JSON (JavaScript Object Notation):
+JSON is a lightweight data interchange format that is used to transmit data between a server and a web application. It is easy for humans to read and write and easy for machines to parse and generate.
+
+JSON is represented as a collection of key-value pairs, similar to JavaScript objects. The keys are always strings, and the values can be strings, numbers, booleans, arrays, objects, or null.
+
+Here's an example of a JSON object:
+
+```json
+{
+  "name": "John",
+  "age": 25,
+  "city": "Mumbai",
+  "hobbies": ["reading", "coding", "traveling"],
+  "isStudent": true,
+  "address": null
+}
+```
+
+JavaScript provides built-in methods to work with JSON:
+
+1. `JSON.stringify()` converts a JavaScript object or value to a JSON string.
+2. `JSON.parse()` converts a JSON string into a JavaScript object or value.
+
+Here's an example:
+
+```javascript
+const person = {
+  name: "John",
+  age: 25,
+  city: "Mumbai",
+};
+
+// Convert object to JSON string
+const jsonString = JSON.stringify(person);
+console.log(jsonString);
+// Output: {"name":"John","age":25,"city":"Mumbai"}
+
+// Convert JSON string to object
+const personObject = JSON.parse(jsonString);
+console.log(personObject);
+// Output: { name: "John", age: 25, city: "Mumbai" }
+```
+
+JSON is widely used for data exchange in web applications and APIs.
+
+<br />
+
+---
+
+Understanding and utilizing different data structures is essential for efficient and optimized programming. They allow you to store and manipulate data in ways that best fit your application requirements.
+
+_These are just a few examples of commonly used data structures in JavaScript. Depending on your specific needs, you can also explore other data structures like stacks, queues, linked lists, trees, and graphs, which can be implemented using JavaScript arrays, objects, or custom implementations._
+
+        </md-block>
+    </main>
+    <script>
+      window.onload = function() {
+        setTimeout(function(){
+          ootliner();
+        }, 3000);
+      }
+    </script>
+</body>
+</html>

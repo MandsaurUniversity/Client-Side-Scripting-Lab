@@ -4,3 +4,10 @@ pre, code {
 p > code, li > code {    
     background: hsl(var(--gray) / .1);
 }
+
+.oot_base, .oot_outline_mini, .oot_outline_expanded{
+    top: 5%;
+}
+.oot_base {
+    max-height: 80vh;
+}
