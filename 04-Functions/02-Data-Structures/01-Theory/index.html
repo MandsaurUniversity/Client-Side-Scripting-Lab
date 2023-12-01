@@ -6,11 +6,11 @@
     <title>Data Structures - JavaScript</title>
 
     <script src="https://unpkg.com/ootliner@0.0.2/lib/index.js "></script>
-    <script type="module" src="https://md-block.verou.me/prism.js"></script>
     <script type="module" src="https://md-block.verou.me/md-block.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
 
-	  <link rel="stylesheet" href="https://md-block.verou.me/prism.css">
     <link rel="stylesheet" href="https://md-block.verou.me/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
     <link rel="stylesheet" href="../../00-assets/custom.css">
 </head>
 <body>
@@ -697,6 +697,7 @@ _These are just a few examples of commonly used data structures in JavaScript. D
     <script>
       window.onload = function() {
         setTimeout(function(){
+          hljs.highlightAll();
           ootliner();
         }, 3000);
       }
