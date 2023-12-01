@@ -1,0 +1,6 @@
+pre, code {
+    color: hsl(var(--main-color-hs) 20%);    
+}
+p code {    
+    background: hsl(var(--gray) / .1);
+}

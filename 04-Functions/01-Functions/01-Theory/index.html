@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Functions</title>
+
+	<link rel="stylesheet" href="https://md-block.verou.me/prism.css">
+    <link rel="stylesheet" href="https://md-block.verou.me/style.css">
+    <link rel="stylesheet" href="assets/style.css">
+
+    <script type="module" src="https://md-block.verou.me/md-block.js"></script>
+    <!-- <link href="https://live.prismjs.com/prism-live.css" rel="stylesheet"> -->
+</head>
+<body>
+    <main>
+        <md-block hlinks>
+
+## Defining a Function
+
+In JavaScript, a function is a block of reusable code that performs a specific task. It allows you to group related code together and execute it whenever needed. To define a function, you can use the `function` keyword followed by the function name, parentheses for parameters (optional), and curly braces for the function body. Here's an example:
+
+```javascript
+function greet(name) {
+    console.log("Hello, " + name + "!");
+}
+```
+
+In the above code, we defined a function called `greet` that takes a parameter `name`. The function body simply logs a greeting message to the console.
+
+## Binding and Scopes
+
+When you define a variable or a function inside a block of code, it becomes bound to that specific scope. Scopes determine the accessibility of variables and functions in different parts of your code. In JavaScript, there are two types of scopes: global scope and local scope.
+
+- **Global Scope:** Variables and functions defined outside of any function or block have global scope. They can be accessed from anywhere in your code.
+
+- **Local Scope:** Variables and functions defined inside a function or block have local scope. They can only be accessed within that specific function or block.
+
+```javascript
+let globalVariable = "I'm a global variable";
+
+function myFunction() {
+    let localVariable = "I'm a local variable";
+    console.log(localVariable);
+}
+
+console.log(globalVariable); // Output: I'm a global variable
+console.log(localVariable); // Error: localVariable is not defined
+```
+
+In the above example, `globalVariable` is accessible from anywhere in the code, while `localVariable` is only accessible within the `myFunction` function.
+
+## Functions as Values
+
+In JavaScript, functions are treated as first-class citizens, which means they can be assigned to variables, passed as arguments to other functions, and returned as values from functions. This allows you to use functions in a more flexible and dynamic way.
+
+```javascript
+function sayHello() {
+    console.log("Hello!");
+}
+
+let myFunction = sayHello;
+myFunction(); // Output: Hello!
+```
+
+In the above code, we assigned the `sayHello` function to a variable `myFunction`. We can then call `myFunction` just like any other function.
+
+## Declaration Notation
+
+In addition to the regular function definition using the `function` keyword, JavaScript also supports another way of declaring functions called declaration notation. In this notation, you can directly assign a function to a variable without using the `function` keyword.
+
+```javascript
+let greet = function(name) {
+    console.log("Hello, " + name + "!");
+};
+
+greet("Alice"); // Output: Hello, Alice!
+```
+
+In the above example, we assigned an anonymous function to the `greet` variable using the declaration notation. We can still call the function using the variable name.
+
+## Arrow Functions
+
+Arrow functions are a more concise way of writing functions in JavaScript. They provide a shorter syntax and automatically bind `this` to the surrounding context. Arrow functions are defined using the `=>` syntax.
+
+```javascript
+let multiply = (a, b) => {
+    return a * b;
+};
+
+console.log(multiply(2, 3)); // Output: 6
+```
+
+In the above code, we defined an arrow function called `multiply` that takes two parameters `a` and `b`. The function body returns the product of `a` and `b`.
+
+## The Call Stack
+
+The call stack is a mechanism used by JavaScript to keep track of function calls. It is a data structure that stores information about the active functions and their execution contexts. When a function is called, it gets pushed onto the call stack, and when it returns, it gets popped off the stack.
+
+```javascript
+function first() {
+    second();
+    console.log("First function");
+}
+
+function second() {
+    console.log("Second function");
+}
+
+first();
+```
+
+In the above code, when the `first` function is called, it pushes itself onto the call stack. Inside the `first` function, the `second` function is called, which also gets pushed onto the call stack. The `second` function logs a message to the console and returns, so it gets popped off the stack. Finally, the `first` function logs a message to the console and returns, completing the execution.
+
+## Optional Arguments
+
+In JavaScript, function parameters can be optional. You can define default values for parameters in case they are not provided when the function is called. This allows you to make certain arguments optional and provide a fallback value if they are not specified.
+
+```javascript
+function greet(name = "stranger") {
+    console.log("Hello, " + name + "!");
+}
+
+greet(); // Output: Hello, stranger!
+greet("Alice"); // Output: Hello, Alice!
+```
+
+In the above code, the `greet` function has an optional parameter `name` with a default value of "stranger". If no argument is provided, it uses the default value. If an argument is provided, it uses the provided value.
+
+## Closure
+
+Closure is a powerful concept in JavaScript that allows a function to access variables from its outer (enclosing) scope even after the outer function has finished executing. It essentially "remembers" the environment in which it was created.
+
+```javascript
+function outer() {
+    let count = 0;
+
+    function inner() {
+    count++;
+    console.log(count);
+    }
+
+    return inner;
+}
+
+let closureFunction = outer();
+closureFunction(); // Output: 1
+closureFunction(); // Output: 2
+```
+
+In the above code, the `outer` function returns the `inner` function. The `inner` function forms a closure with the `count` variable from the outer scope. Each time the `closureFunction` is called, it increments the `count` variable and logs its value.
+
+## Recursion
+
+Recursion is a technique where a function calls itself to solve a problem by breaking it down into smaller, similar subproblems. It is especially useful for solving problems that can be defined in terms of smaller instances of the same problem.
+
+```javascript
+function factorial(n) {
+    if (n === 0) {
+    return 1;
+    } else {
+    return n * factorial(n - 1);
+    }
+}
+
+console.log(factorial(5)); // Output: 120
+```
+
+In the above code, the `factorial` function calculates the factorial of a number using recursion. It calls itself with a smaller value until it reaches the base case (`n === 0`), where it returns 1. The results are then multiplied together as the recursive calls unwind.
+
+## Growing Functions
+
+When writing code, it is important to start with simple, small functions that perform specific tasks. However, as the codebase grows, functions may need to evolve and handle more complex logic. This process of gradually adding functionality to existing functions is known as "growing functions".
+
+```javascript
+function square(n) {
+    return n * n;
+}
+
+function cube(n) {
+    return n * n * n;
+}
+
+console.log(square(2)); // Output: 4
+console.log(cube(2)); // Output: 8
+```
+
+In the above code, we have two functions: `square` and `cube`. Initially, they only calculate the square and cube of a number, respectively. However, as the requirements change, these functions can be expanded to handle additional functionality without affecting the existing code structure.
+
+I hope this explanation and examples help you understand these JavaScript concepts. If you have any more questions or need further clarification, feel free to ask!
+
+        </md-block>
+    </main>
+</body>
+</html>
