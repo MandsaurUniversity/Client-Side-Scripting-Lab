@@ -1,6 +1,6 @@
 window.onload = function() {
-    setTimeout(function(){
-      hljs.highlightAll();
-      ootliner();
-    }, 3000);
-  }
+  setTimeout(function(){
+    hljs.highlightAll();
+    ootliner();
+  }, 1500);
+}

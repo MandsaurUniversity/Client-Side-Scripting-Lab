@@ -10,4 +10,5 @@ p > code, li > code {
 }
 .oot_base {
     max-height: 80vh;
+    background: #f3f3f3;
 }
