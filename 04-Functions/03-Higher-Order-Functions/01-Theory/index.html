@@ -1,12 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    Certainly! Higher-order functions are an advanced concept in JavaScript that involve treating functions as values and passing them as arguments or returning them from other functions. This concept is derived from functional programming paradigms and allows for more flexible and modular code.
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Higher-Order Functions - JavaScript</title>
+
+      <script src="../../../00-assets/js/ootliner@0.0.2/index.js"></script>
+      <script type="module" src="../../../00-assets/js/md-block/md-block.js"></script>
+      <script src="../../../00-assets/js/highlightjs@11.9.0/highlight.min.js"></script>
+      <script src="../../../00-assets/js/custom.js"></script>
+
+      <link rel="stylesheet" href="../../../00-assets/css/md-block/style.css">
+      <link rel="stylesheet" href="../../../00-assets/css/highlightjs@11.9.0/default.min.css">
+      <link rel="stylesheet" href="../../../00-assets/css/custom.css">
+  </head>
+  <body>
+    <main>
+        <md-block hlinks>
+___
+
+<center><a href='https://github.com/MandsaurUniversity/Client-Side-Scripting-Lab'><img src='../../../00-assets/images/mu-logo.png'/></a></center>
+<center><strong>Mandsaur University</strong></center>
+
+___
+
+# Higher-Order Functions
+
+## Introduction
+
+Higher-order functions are an advanced concept in JavaScript that involve treating functions as values and passing them as arguments or returning them from other functions. This concept is derived from functional programming paradigms and allows for more flexible and modular code.
 
 In JavaScript, functions are considered first-class citizens, which means they can be assigned to variables, stored in data structures, and passed around as arguments to other functions, just like any other value.
 
@@ -14,7 +36,7 @@ A higher-order function is a function that either takes one or more functions as
 
 Here are a few common examples of higher-order functions:
 
-1. Function as an Argument:
+### 1. Function as an Argument
 ```javascript
 function executeCallback(callback) {
   // Perform some operations
@@ -32,7 +54,7 @@ executeCallback(sayHello);
 ```
 In this example, the `executeCallback` function takes a callback function as an argument and executes it. The `sayHello` function is passed as an argument to `executeCallback`, and it is called within `executeCallback` using the `callback()` syntax.
 
-2. Function as a Return Value:
+### 2. Function as a Return Value
 ```javascript
 function createMultiplier(multiplier) {
   return function (number) {
@@ -67,7 +89,321 @@ In this example, `numbers.map()` takes a callback function that squares each ele
 
 Higher-order functions provide a powerful way to write concise, modular, and reusable code. They are a fundamental concept in functional programming and are widely used in JavaScript development.
 
-I hope this explanation helps you understand the concept of higher-order functions in JavaScript. If you have any further questions, feel free to ask!
-    
-</body>
+## Abstraction & Abstracting Repetition
+
+Abstraction is a fundamental concept in computer science and programming that involves simplifying and hiding complex implementation details behind a simpler and more user-friendly interface. In the context of higher-order functions, abstraction can be used to eliminate repetitive code by encapsulating common patterns into reusable functions.
+
+When we talk about abstracting repetition, we mean finding a way to generalize and consolidate repetitive code patterns into a single higher-order function. This allows us to write more concise and modular code, making our programs easier to read, understand, and maintain.
+
+Let's take an example to understand this concept better. Suppose we have an array of numbers and we want to perform some operation on each number, such as doubling it. We could write a loop to accomplish this, but it would involve repetitive code:
+
+```javascript
+const numbers = [1, 2, 3, 4, 5];
+const doubledNumbers = [];
+
+for (let i = 0; i < numbers.length; i++) {
+  const doubled = numbers[i] * 2;
+  doubledNumbers.push(doubled);
+}
+
+console.log(doubledNumbers);
+// Output: [2, 4, 6, 8, 10]
+```
+
+In the above code, we manually iterate over each element of the `numbers` array, double it, and push the result into a new array `doubledNumbers`. This code works, but it is repetitive and can become error-prone and hard to maintain as the complexity of the operation increases.
+
+To abstract away this repetition, we can use a higher-order function like `Array.prototype.map()`. The `map()` function takes a callback function and applies it to each element of an array, returning a new array with the transformed values.
+
+Here's how we can rewrite the above code using `map()`:
+
+```javascript
+const numbers = [1, 2, 3, 4, 5];
+
+const doubledNumbers = numbers.map(function (number) {
+  return number * 2;
+});
+
+console.log(doubledNumbers);
+// Output: [2, 4, 6, 8, 10]
+```
+
+In this code, we pass a callback function to `numbers.map()`, which is automatically called for each element of the `numbers` array. The callback function takes each number, doubles it, and returns the result. The `map()` function then collects these transformed values and returns a new array `doubledNumbers`.
+
+By using `map()`, we abstracted away the repetition of iterating over the array and applying the doubling operation. The code becomes more concise, readable, and easier to understand. Additionally, if we need to perform a different operation, such as squaring the numbers, we can simply change the logic inside the callback function without modifying the iteration code.
+
+This example demonstrates how higher-order functions can abstract away repetitive code patterns by encapsulating them into reusable functions. By using higher-order functions like `map()`, `filter()`, or `reduce()`, we can eliminate boilerplate code and make our programs more expressive, modular, and maintainable.
+
+## Filtering Arrays
+
+Filtering arrays is a common task in JavaScript programming, and it can be efficiently done using higher-order functions. Higher-order functions allow you to filter arrays based on specific criteria by providing a callback function that determines whether an element should be included in the resulting filtered array.
+
+One of the most commonly used higher-order functions for filtering arrays is `Array.prototype.filter()`. The `filter()` method creates a new array containing all elements from the original array that pass a specified test or condition.
+
+Here's an example to illustrate how to filter an array of numbers using the `filter()` method:
+
+```javascript
+const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+const evenNumbers = numbers.filter(function (number) {
+  return number % 2 === 0;
+});
+
+console.log(evenNumbers);
+// Output: [2, 4, 6, 8, 10]
+```
+
+In this example, we have an array called `numbers` that contains a sequence of numbers. We use the `filter()` method on the `numbers` array and pass a callback function as an argument. The callback function is executed for each element in the array.
+
+The callback function takes each `number` as a parameter and returns a boolean value indicating whether the number meets the filtering criteria. In this case, we check if each number is even by using the modulo operator (`%`). If the number is divisible by 2 and has a remainder of 0, it is considered even and the callback function returns `true`, indicating that it should be included in the resulting `evenNumbers` array.
+
+The `filter()` method then creates a new array containing only the elements for which the callback function returned `true`, in this case, the even numbers from the original array.
+
+By utilizing higher-order functions like `filter()`, you can filter arrays based on a wide range of conditions, such as checking for specific values, properties, or any custom criteria defined within the callback function. This allows you to create flexible and reusable code for array filtering tasks.
+
+Another advantage of using higher-order functions for array filtering is that they provide a more declarative and readable approach compared to traditional looping constructs like `for` or `while` loops. The callback function encapsulates the filtering logic, making the code more concise and expressive.
+
+### 1. Array transformation with map()
+
+Transforming arrays with `map()` and summarizing arrays with `reduce()` are powerful concepts in JavaScript that leverage higher-order functions. Let's explore each concept in detail with examples.
+
+1. Transforming Arrays with `map()`:
+The `map()` method is a higher-order function that allows you to transform each element of an array and create a new array with the transformed values. It takes a callback function as an argument and applies it to each element in the array.
+
+Here's an example to demonstrate how to use `map()` to transform an array of numbers by squaring each element:
+
+```javascript
+const numbers = [1, 2, 3, 4, 5];
+
+const squaredNumbers = numbers.map(function (number) {
+  return number ** 2;
+});
+
+console.log(squaredNumbers);
+// Output: [1, 4, 9, 16, 25]
+```
+
+In this example, the `map()` method is called on the `numbers` array, and a callback function is provided. The callback function takes each `number` as a parameter and returns the squared value of that number using the exponentiation operator (`**`). The `map()` method applies this transformation to each element, creating a new array `squaredNumbers` with the squared values.
+
+By using `map()`, you can easily apply any custom transformation to each element of an array without modifying the original array. This makes the code more readable, concise, and expressive.
+
+### 2. Summarizing Arrays with `reduce()`
+The `reduce()` method is another higher-order function that allows you to summarize or reduce an array into a single value. It iterates over the array and accumulates a result by applying a callback function that performs a specific operation on each element.
+
+Here's an example to illustrate how to use `reduce()` to summarize an array of numbers by calculating their sum:
+
+```javascript
+const numbers = [1, 2, 3, 4, 5];
+
+const sum = numbers.reduce(function (accumulator, number) {
+  return accumulator + number;
+}, 0);
+
+console.log(sum);
+// Output: 15
+```
+
+In this example, the `reduce()` method is called on the `numbers` array, and a callback function is provided along with an initial value for the `accumulator` parameter, which is set to 0. The callback function takes two parameters: the `accumulator` and the current `number` being processed.
+
+The callback function performs the desired operation, in this case, adding the `number` to the `accumulator`. The result is then used as the new value of the `accumulator` in the next iteration. Once all elements have been processed, the final value of the `accumulator` is returned as the result.
+
+By using `reduce()`, you can perform various summarization operations on an array, such as calculating the sum, finding the maximum or minimum value, concatenating strings, or any other custom operation defined within the callback function.
+
+Both `map()` and `reduce()` are powerful higher-order functions that provide a clean and concise way to transform and summarize arrays. They help in writing more readable and expressive code while reducing the need for manual looping constructs like `for` or `while` loops.
+
+I hope this explanation clarifies the concepts of transforming arrays with `map()` and summarizing arrays with `reduce()` in the context of higher-order functions. If you have any further questions, feel free to ask!
+
+## Composability
+
+Composability is a fundamental concept in functional programming and refers to the ability to combine smaller functions to create more complex and reusable functions. Higher-order functions enable composability by allowing functions to accept other functions as arguments or return functions as results.
+
+In JavaScript, higher-order functions promote composability by providing a way to create new functions by composing existing functions. This allows for the creation of modular and reusable code, as smaller functions can be combined and reused in different contexts.
+
+Let's explore composability in more detail with an example using higher-order functions:
+
+```javascript
+// Example: Composing two functions to create a new function
+
+// Function to double a number
+function double(number) {
+  return number * 2;
+}
+
+// Function to add 5 to a number
+function addFive(number) {
+  return number + 5;
+}
+
+// Function to compose two functions
+function compose(f, g) {
+  return function (x) {
+    return f(g(x));
+  };
+}
+
+// Compose the double and addFive functions
+const doubleAndAddFive = compose(double, addFive);
+
+// Use the composed function
+const result = doubleAndAddFive(3);
+console.log(result);
+// Output: 11
+```
+
+In this example, we have two simple functions: `double()` and `addFive()`. The `double()` function takes a number and returns its double, while the `addFive()` function takes a number and returns the number plus 5.
+
+The `compose()` function is a higher-order function that takes two functions, `f` and `g`, as parameters. It returns a new function that applies the functions in the specified order. The composed function takes an input `x`, applies the function `g` to it, and then applies the function `f` to the result.
+
+By using the `compose()` function, we create a new function called `doubleAndAddFive` that composes the `double()` and `addFive()` functions. This new function doubles a number and then adds 5 to it.
+
+When we call `doubleAndAddFive(3)`, it first applies the `addFive()` function to 3, resulting in 8. Then, it applies the `double()` function to 8, resulting in 16. Finally, the result 16 is printed to the console.
+
+By composing smaller functions, we can create more complex and reusable functions. This promotes code modularity, readability, and maintainability. It also allows for code reuse, as the composed function can be used in different parts of the program or combined with other functions to create more complex behavior.
+
+Composability is a powerful concept in functional programming, and higher-order functions play a crucial role in enabling it. They provide a way to create flexible and modular code by combining smaller functions to create more complex behavior.
+
+I hope this explanation clarifies the concept of composability in the context of higher-order functions. If you have any further questions, feel free to ask!
+
+## Strings and character codes
+
+Understanding strings and character codes is crucial when working with text data in JavaScript. Higher-order functions can be used to manipulate strings and work with character codes effectively. Let's explore these concepts in detail:
+
+### 1. Strings and Character Codes
+
+In JavaScript, a string is a sequence of characters enclosed in single ('') or double quotes (""). Each character in a string is represented by a Unicode character code. Unicode is an international character encoding standard that assigns a unique number to each character, including letters, digits, symbols, and whitespace.
+
+Character codes can be accessed using the `charCodeAt()` method, which is available on string objects. The `charCodeAt()` method returns the Unicode value of a character at a specific index within the string.
+
+Here's an example to demonstrate how to retrieve character codes from a string:
+
+```javascript
+const name = "John";
+
+console.log(name.charCodeAt(0));
+// Output: 74
+
+console.log(name.charCodeAt(1));
+// Output: 111
+
+console.log(name.charCodeAt(2));
+// Output: 104
+
+console.log(name.charCodeAt(3));
+// Output: 110
+```
+
+In this example, the string "John" is assigned to the variable `name`. We use the `charCodeAt()` method to retrieve the character code at each index within the string. The character code of the letter "J" at index 0 is 74, "o" at index 1 is 111, "h" at index 2 is 104, and "n" at index 3 is 110.
+
+Understanding character codes is essential when working with text manipulation, sorting, or any operations involving individual characters within a string.
+
+### 2. Recognizing Text with Higher-Order Functions
+Higher-order functions, such as `forEach()` or `map()`, can be used to iterate over characters in a string and perform operations on them. These functions accept a callback function as an argument and apply it to each character in the string.
+
+Here's an example to demonstrate how to recognize text using higher-order functions:
+
+```javascript
+const text = "Hello, World!";
+
+// Using forEach to iterate over each character
+text.split("").forEach(function (character) {
+  console.log(character);
+});
+
+// Using map to convert characters to character codes
+const characterCodes = text.split("").map(function (character) {
+  return character.charCodeAt(0);
+});
+
+console.log(characterCodes);
+// Output: [72, 101, 108, 108, 111, 44, 32, 87, 111, 114, 108, 100, 33]
+```
+
+In this example, the string "Hello, World!" is assigned to the variable `text`. We split the string into an array of individual characters using the `split("")` method and then use `forEach()` to iterate over each character and print it to the console.
+
+Additionally, we use the `map()` method to convert each character to its corresponding character code. The callback function passed to `map()` uses `charCodeAt(0)` to retrieve the character code of each character, and the resulting array `characterCodes` contains the character codes of each character in the original string.
+
+By utilizing higher-order functions like `forEach()` or `map()`, you can perform various text-related operations, such as character counting, text transformation, or any custom logic defined within the callback function.
+
+These examples demonstrate how higher-order functions can be used to work with strings and character codes effectively. They allow for flexible and expressive text manipulation, enabling you to create more versatile and reusable code.
+
+### 3. Significance of using string and character codes
+
+Using string and character codes can be significant in various scenarios, especially when dealing with text processing, data validation, encryption, or any operations involving individual characters within a string. Let's explore a real-world example to understand the significance:
+
+#### 1. Real-World Example: Password Strength Checker
+Let's say you're building a password strength checker function that evaluates the strength of a password based on specific criteria. One of the criteria is to ensure that the password contains at least one uppercase letter.
+
+By utilizing character codes, you can easily check if the password meets this requirement. Here's an example implementation:
+
+```javascript
+function isPasswordStrong(password) {
+  for (let i = 0; i < password.length; i++) {
+    const charCode = password.charCodeAt(i);
+    if (charCode >= 65 && charCode <= 90) {
+      return true;
+    }
+  }
+  return false;
+}
+
+const password = "passWord123";
+const isStrong = isPasswordStrong(password);
+
+console.log(isStrong);
+// Output: true
+```
+
+In this example, the `isPasswordStrong()` function takes a `password` as a parameter. It iterates over each character in the password using a `for` loop. Within the loop, the `charCodeAt()` method is used to retrieve the character code of each character.
+
+The condition `charCode >= 65 && charCode <= 90` checks if the character code falls within the range of uppercase letters in the Unicode table. Uppercase letters in Unicode range from 65 (A) to 90 (Z). If the condition is satisfied for any character in the password, it means the password contains at least one uppercase letter, and the function returns `true`. Otherwise, if no uppercase letter is found, it returns `false`.
+
+By utilizing character codes, you can easily perform various text-related operations or apply specific criteria to validate or manipulate text. In this example, we used character codes to check the presence of uppercase letters in a password, but you can extend this idea to validate other criteria, such as the presence of lowercase letters, numbers, symbols, or specific patterns within a string.
+
+The significance of using string and character codes in this scenario is that it allows for precise and flexible text processing. It enables you to define custom rules or criteria based on character codes, making it easier to implement complex logic and ensure data integrity in real-world scenarios.
+
+#### 2. Same example, but using map() function
+
+Let's see the same real-world example utilizing the `map()` function instead of loops. Here's the modified implementation:
+
+```javascript
+function isPasswordStrong(password) {
+  const charCodes = password.split("").map(function (character) {
+    return character.charCodeAt(0);
+  });
+
+  return charCodes.some(function (charCode) {
+    return charCode >= 65 && charCode <= 90;
+  });
+}
+
+const password = "passWord123";
+const isStrong = isPasswordStrong(password);
+
+console.log(isStrong);
+// Output: true
+```
+
+In this modified implementation, we utilize the `map()` function to convert each character of the password string into its corresponding character code. The `split("")` method is used to split the password string into an array of individual characters. Then, the `map()` function is applied to each character, returning an array of character codes.
+
+The `some()` function is used to check if any of the character codes within the `charCodes` array satisfy the condition of being an uppercase letter. The callback function for `some()` checks if the character code falls within the range of uppercase letters in the Unicode table. If at least one character code satisfies the condition, the `some()` function returns `true`, indicating that the password contains at least one uppercase letter.
+
+By using the `map()` function, we can eliminate the need for manual iteration using loops. It simplifies the code and enhances readability. The `map()` function applies the same transformation (in this case, retrieving character codes) to each element of the array, allowing for concise and expressive code.
+
+Utilizing higher-order functions like `map()` and `some()` provides a more functional programming approach, leading to code that is easier to understand, maintain, and test.
+
+---
+
+# > TRY IF YOURSELF (live code editor)
+
+<iframe
+frameBorder="0"
+height="350px"  
+src="https://onecompiler.com/embed/javascript?hideTitle=true&hideLanguageSelection=true&hideNew=true&hideNewFileOption=true&hideTitle=true&hideStdin=true&theme=dark" 
+width="100%"
+></iframe>
+
+---
+
+      </md-block>
+    </main>
+  </body>
 </html>
